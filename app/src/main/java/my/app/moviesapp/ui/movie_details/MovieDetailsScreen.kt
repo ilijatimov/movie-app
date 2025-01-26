@@ -16,11 +16,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.movieapp.util.Resource
 import my.app.moviesapp.ui.util.SharedViewModel
 import my.app.moviesapp.ui.util.Strings
 import my.app.moviesapp.ui.util.composables.ProgressIndicator
 import my.app.moviesapp.ui.util.showSnackBar
+import my.app.moviesapp.util.Resource
 
 @Composable
 fun MovieDetailsScreen(
@@ -30,11 +30,12 @@ fun MovieDetailsScreen(
     val snackBarHostState = remember { SnackbarHostState() }
     val movieDetailsResponse = viewModelDetails.movieDetailsResponse.collectAsState()
     val currentStatus = movieDetailsResponse.value?.status
-    // Fetch movie details
+
     LaunchedEffect(Unit) {
         val movieDetails = sharedViewModel.getMovieDetails()
         val movieId = movieDetails?.id
 
+        // Fetch movie details
         viewModelDetails.getMovieDetails(movieId)
     }
 
@@ -44,6 +45,7 @@ fun MovieDetailsScreen(
             SnackbarHost(hostState = snackBarHostState)
         },
         floatingActionButton = {
+            //show fab to add to favourites in bottom right
             if (currentStatus != Resource.Status.LOADING) {
                 FABAddToFavourites(snackBarHostState = snackBarHostState)
             }
@@ -52,6 +54,7 @@ fun MovieDetailsScreen(
             Box(modifier = Modifier.fillMaxSize()) {
                 when (currentStatus) {
                     Resource.Status.ERROR -> {
+                        //get movie details that were set in a shared view model if fetching from endpoint fails
                         val fallbackMovieDetails = sharedViewModel.getMovieDetails()
                         viewModelDetails.setSelectedMovie(fallbackMovieDetails)
 
@@ -66,6 +69,7 @@ fun MovieDetailsScreen(
 
                     else -> {}
                 }
+                //show content
                 if (currentStatus != Resource.Status.LOADING) {
                     MovieDetailsContent(viewModelDetails.movieDetails)
                     viewModelDetails.checkIfMovieSaved()

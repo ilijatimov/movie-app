@@ -1,8 +1,8 @@
-package com.example.movieapp.data.repository.favorites
+package my.app.moviesapp.data.repository.favorites
 
-import com.example.movieapp.data.db.MoviesDao
-import com.example.movieapp.data.model.movie_details.MovieDetails
 import kotlinx.coroutines.flow.Flow
+import my.app.moviesapp.data.db.MoviesDao
+import my.app.moviesapp.data.model.movie_details.MovieDetails
 import javax.inject.Inject
 
 class FavoritesRepository @Inject constructor(

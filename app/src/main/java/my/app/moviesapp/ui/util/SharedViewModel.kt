@@ -2,8 +2,8 @@ package my.app.moviesapp.ui.util
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.example.movieapp.data.model.movie_details.MovieDetails
 import dagger.hilt.android.lifecycle.HiltViewModel
+import my.app.moviesapp.data.model.movie_details.MovieDetails
 import javax.inject.Inject
 
 @HiltViewModel

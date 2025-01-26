@@ -13,9 +13,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.movieapp.util.Const
 import my.app.moviesapp.MainActivityViewModel
 import my.app.moviesapp.ui.util.popupToDestination
+import my.app.moviesapp.util.Const
 
 @Composable
 @Preview
@@ -41,6 +41,7 @@ fun BottomBar(
                 },
                 selected = selected,
                 onClick = {
+                    //pop to a destination without saving the previous one in the backstack
                     if (!selected) {
                         navController?.popupToDestination(screen)
                     }

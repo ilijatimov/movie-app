@@ -1,17 +1,17 @@
-package com.example.movieapp.di
+package my.app.moviesapp.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.movieapp.data.db.MoviesDao
-import com.example.movieapp.data.db.MoviesDatabase
-import com.example.movieapp.networking.NetworkService
-import com.example.movieapp.util.Const
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import my.app.moviesapp.data.db.MoviesDao
+import my.app.moviesapp.data.db.MoviesDatabase
+import my.app.moviesapp.networking.NetworkService
+import my.app.moviesapp.util.Const
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

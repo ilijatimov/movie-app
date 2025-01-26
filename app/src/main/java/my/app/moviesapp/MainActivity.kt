@@ -14,7 +14,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import my.app.moviesapp.theme.MoviesAppTheme
 import my.app.moviesapp.ui.navigation.BottomBar
 import my.app.moviesapp.ui.navigation.NavigationGraph
-import my.app.moviesapp.ui.navigation.Screens
 import my.app.moviesapp.ui.navigation.TopBar
 import my.app.moviesapp.ui.navigation.getCurrentScreen
 import my.app.moviesapp.ui.search.SearchMoviesViewModel
@@ -28,8 +27,11 @@ class MainActivity : ComponentActivity() {
             MoviesAppTheme {
                 val navController = rememberNavController()
                 val mainActivityViewModel: MainActivityViewModel = hiltViewModel()
+                //this viewmodel is passed down to TopBar and the screen for searching movies
                 val searchMoviesViewModel: SearchMoviesViewModel = hiltViewModel()
 
+                // set current screen that is observed in TopBar and BottomBar, in order
+                // to set the title and set the selected navigation item
                 navController.addOnDestinationChangedListener { _, destination, _ ->
                     val currentScreen = getCurrentScreen(destination.route)
                     mainActivityViewModel.setCurrentScreen(currentScreen)

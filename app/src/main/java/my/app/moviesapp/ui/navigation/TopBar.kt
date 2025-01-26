@@ -1,6 +1,5 @@
 package my.app.moviesapp.ui.navigation
 
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -17,14 +16,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import com.example.movieapp.util.Const
 import my.app.moviesapp.MainActivityViewModel
 import my.app.moviesapp.ui.search.SearchMoviesViewModel
 import my.app.moviesapp.ui.util.Dimens
 import my.app.moviesapp.ui.util.Strings
+import my.app.moviesapp.util.Const
 
 
 @Composable
@@ -36,7 +36,7 @@ fun TopBar(
     val query by searchMoviesViewModel.query.collectAsState()
     val currentRoute by mainActivityViewModel.currentRoute.collectAsState()
 
-    TopAppBarPreview(currentRoute, query, setQuery = { query ->
+    TopAppBarPreview(currentRoute, query, doSearching = { query ->
         searchMoviesViewModel.doSearching(query)
     }, navigateUp = {
         navController.navigateUp()
@@ -49,7 +49,7 @@ fun TopBar(
 fun TopAppBarPreview(
     currentScreen: Screens? = null,
     query: String = "",
-    setQuery: (String) -> Unit = {},
+    doSearching: (String) -> Unit = {},
     navigateUp: () -> Unit = {}
 ) {
     TopAppBar(
@@ -58,28 +58,31 @@ fun TopAppBarPreview(
         ),
         title = {
             when (currentScreen) {
+                //search bar for movies
                 Screens.SearchScreen -> {
                     SearchBar(
                         modifier = Modifier.offset(y = Dimens.dimenNegative5), inputField = {
                             SearchBarDefaults.InputField(
                                 placeholder = { Text(Strings.Search) },
                                 query = query,
-                                onQueryChange = { query -> setQuery(query) },
-                                onSearch = { query -> setQuery(query) },
+                                onQueryChange = { query -> doSearching(query) },
+                                onSearch = { query -> doSearching(query) },
                                 onExpandedChange = {},
                                 expanded = false
                             )
                         },
+                        colors = SearchBarDefaults.colors(containerColor = MaterialTheme.colorScheme.onPrimary),
                         expanded = false,
                         onExpandedChange = {},
                         content = {})
                 }
 
                 else -> {
-                    Text(currentScreen?.title ?: "")
+                    Text(currentScreen?.title ?: "", color = Color.White)
                 }
             }
         }, navigationIcon = {
+            //show arrow if screen is not in bottom bar
             if (!Const.bottomBarScreens.contains(currentScreen)) {
                 IconButton(onClick = { navigateUp() }) {
                     Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)

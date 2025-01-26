@@ -6,8 +6,8 @@ import android.net.Uri
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
 import androidx.navigation.NavController
-import com.example.movieapp.data.model.movie_details.MovieGenres
-import com.example.movieapp.data.model.movie_details.ProductionCompanies
+import my.app.moviesapp.data.model.movie_details.MovieGenres
+import my.app.moviesapp.data.model.movie_details.ProductionCompanies
 import my.app.moviesapp.ui.navigation.Screens
 import java.text.SimpleDateFormat
 import java.util.Locale

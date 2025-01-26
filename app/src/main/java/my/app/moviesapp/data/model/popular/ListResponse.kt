@@ -1,6 +1,6 @@
-package com.example.movieapp.data.model.popular
+package my.app.moviesapp.data.model.popular
 
-import com.example.movieapp.data.model.movie_details.MovieDetails
+import my.app.moviesapp.data.model.movie_details.MovieDetails
 
 data class ListResponse(
     val results : List<MovieDetails>,

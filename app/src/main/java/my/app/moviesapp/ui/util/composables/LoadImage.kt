@@ -5,8 +5,8 @@ import androidx.compose.ui.Modifier
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.bumptech.glide.integration.compose.placeholder
-import com.example.movieapp.util.Const
 import my.app.moviesapp.R
+import my.app.moviesapp.util.Const
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable

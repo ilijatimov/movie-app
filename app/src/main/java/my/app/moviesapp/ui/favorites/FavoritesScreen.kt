@@ -18,12 +18,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.movieapp.data.model.movie_details.MovieDetails
-import com.example.movieapp.ui.favorites.FavoritesViewModel
 import kotlinx.coroutines.launch
+import my.app.moviesapp.data.model.movie_details.MovieDetails
+import my.app.moviesapp.ui.util.Strings
 import my.app.moviesapp.ui.util.composables.EmptyList
 import my.app.moviesapp.ui.util.composables.MovieItem
-import my.app.moviesapp.ui.util.Strings
 import my.app.moviesapp.ui.util.showSnackBar
 
 @Composable
@@ -34,8 +33,9 @@ fun FavoritesScreen(
     val snackBarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
 
+    //current selected movie
     var selectedMovie by rememberSaveable { mutableStateOf<MovieDetails?>(null) }
-    var showDialog by rememberSaveable { mutableStateOf(false) }
+
     val favouriteMovies by favoritesViewModel.favouriteMovies.collectAsState()
 
     Scaffold(
@@ -54,30 +54,31 @@ fun FavoritesScreen(
                         onMovieClick(movieDetails)
                     }, onNoteIconClick = {
                         selectedMovie = movieDetails
-                        showDialog = true
                     })
                 }
             }
         }
-
-
     }
 
 
-    if (showDialog) {
+    // dialog that can edit a note for a movie
+    selectedMovie?.let{
         NoteEditDialog(
             movieDetails = selectedMovie,
-            onEdit = { updatedNote, movieId ->
+            onEdit = { updatedNote ->
+                //save not e in db and hide dialog
+                val movieId = selectedMovie?.id
                 movieId?.let {
                     favoritesViewModel.updateNoteForMovie(movieId, updatedNote)
-                    showDialog = false
+                    selectedMovie = null
+                    // show "note updated" snackBar
                     coroutineScope.launch {
                         snackBarHostState.showSnackBar(Strings.NoteUpdated)
                     }
                 }
             },
             onCancel = {
-                showDialog = false
+                selectedMovie = null
             }
         )
     }

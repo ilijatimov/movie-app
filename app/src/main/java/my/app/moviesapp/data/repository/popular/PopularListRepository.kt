@@ -2,7 +2,7 @@ package my.app.moviesapp.data.repository.popular
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import com.example.movieapp.networking.NetworkService
+import my.app.moviesapp.networking.NetworkService
 import my.app.moviesapp.ui.popular.PopularListPagingSource
 import javax.inject.Inject
 

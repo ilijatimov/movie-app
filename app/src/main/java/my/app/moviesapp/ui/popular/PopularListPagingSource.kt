@@ -2,10 +2,10 @@ package my.app.moviesapp.ui.popular
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.movieapp.data.model.movie_details.MovieDetails
-import com.example.movieapp.networking.NetworkService
-import com.example.movieapp.util.Const
-import com.example.movieapp.util.Const.STARTING_INDEX
+import my.app.moviesapp.data.model.movie_details.MovieDetails
+import my.app.moviesapp.networking.NetworkService
+import my.app.moviesapp.util.Const
+import my.app.moviesapp.util.Const.STARTING_INDEX
 
 class PopularListPagingSource(
     private val networkService: NetworkService

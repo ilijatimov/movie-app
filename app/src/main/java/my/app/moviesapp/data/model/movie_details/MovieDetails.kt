@@ -1,11 +1,10 @@
-package com.example.movieapp.data.model.movie_details
+package my.app.moviesapp.data.model.movie_details
 
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
-//TODO da viime so e rabotta
 @Entity(tableName = "movies")
 data class MovieDetails(
     @PrimaryKey(autoGenerate = true)

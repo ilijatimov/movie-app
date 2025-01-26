@@ -2,14 +2,14 @@ package my.app.moviesapp.ui.movie_details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.movieapp.data.model.movie_details.MovieDetails
-import com.example.movieapp.data.repository.movie_details.MovieDetailsRepository
-import com.example.movieapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import my.app.moviesapp.data.model.movie_details.MovieDetails
+import my.app.moviesapp.data.repository.movie_details.MovieDetailsRepository
+import my.app.moviesapp.util.Resource
 import javax.inject.Inject
 
 @HiltViewModel

@@ -1,7 +1,7 @@
-package com.example.movieapp.networking
+package my.app.moviesapp.networking
 
-import com.example.movieapp.data.model.movie_details.MovieDetails
-import com.example.movieapp.data.model.popular.ListResponse
+import my.app.moviesapp.data.model.movie_details.MovieDetails
+import my.app.moviesapp.data.model.popular.ListResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

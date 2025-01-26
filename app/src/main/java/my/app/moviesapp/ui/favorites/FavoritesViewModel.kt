@@ -1,15 +1,15 @@
-package com.example.movieapp.ui.favorites
+package my.app.moviesapp.ui.favorites
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.movieapp.data.model.movie_details.MovieDetails
-import com.example.movieapp.data.repository.favorites.FavoritesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import my.app.moviesapp.data.model.movie_details.MovieDetails
+import my.app.moviesapp.data.repository.favorites.FavoritesRepository
 import javax.inject.Inject
 
 @HiltViewModel

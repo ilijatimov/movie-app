@@ -1,4 +1,4 @@
-package com.example.movieapp.util
+package my.app.moviesapp.util
 
 data class Resource<out T>(val status: Status, val data: T?, val message: String?) {
 

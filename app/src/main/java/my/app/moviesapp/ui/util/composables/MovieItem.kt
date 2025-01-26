@@ -19,11 +19,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.movieapp.data.model.movie_details.MovieDetails
-import com.example.movieapp.util.Const
 import my.app.moviesapp.R
+import my.app.moviesapp.data.model.movie_details.MovieDetails
 import my.app.moviesapp.ui.util.Dimens
 import my.app.moviesapp.ui.util.Strings
+import my.app.moviesapp.util.Const
 
 @Composable
 @Preview
@@ -38,7 +38,7 @@ fun MovieItem(
             .fillMaxWidth()
             .padding(Dimens.dimen6).clickable { onMovieDetailsClick() },
         elevation = CardDefaults.cardElevation(
-            defaultElevation = Dimens.dimen8
+            defaultElevation = Dimens.dimen4
         )
     ) {
         Row(

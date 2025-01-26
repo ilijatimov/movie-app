@@ -7,8 +7,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.example.movieapp.data.model.movie_details.MovieDetails
+import my.app.moviesapp.data.model.movie_details.MovieDetails
 import my.app.moviesapp.ui.favorites.FavoritesScreen
 import my.app.moviesapp.ui.movie_details.MovieDetailsScreen
 import my.app.moviesapp.ui.popular.PopularScreen

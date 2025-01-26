@@ -1,4 +1,4 @@
-package com.example.movieapp.data.model.movie_details
+package my.app.moviesapp.data.model.movie_details
 
 data class ProductionCompanies(
     val name : String?,

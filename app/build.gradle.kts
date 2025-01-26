@@ -13,6 +13,10 @@ android {
     namespace = "my.app.moviesapp"
     compileSdk = 35
 
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+        unitTests.all { it.useJUnitPlatform() } }
+
     defaultConfig {
         applicationId = "my.app.moviesapp"
         minSdk = 24
@@ -42,7 +46,9 @@ android {
     buildFeatures {
         compose = true
     }
+
 }
+
 
 dependencies {
 
@@ -54,11 +60,29 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
+    implementation(libs.core.ktx)
+    implementation(libs.androidx.junit.ktx)
+    implementation(libs.junit)
+    testImplementation(libs.mockk)
+    testImplementation(libs.roomTesting)
+    testImplementation(libs.coreTesting)
+    testImplementation(libs.coroutinesTest)
+    androidTestImplementation(libs.coroutinesTest)
+    testImplementation(libs.paging)
+    testImplementation(libs.junit.jupiter.api)
+    testImplementation(libs.junit.jupiter.engine)
+    testRuntimeOnly(libs.junit.platform.launcher)
+    testRuntimeOnly(libs.byte.buddy)
+
+
+    // Hilt testing dependencies
+    testImplementation(libs.hiltTest)
+    kaptTest(libs.hiltCompiler)
+
+    // Android test dependencies
+    androidTestImplementation(libs.espressoCore)
+    androidTestImplementation(libs.hiltNavFragment)
+    kaptAndroidTest(libs.hiltCompiler)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
@@ -78,5 +102,4 @@ dependencies {
     implementation(libs.androidx.paging.compose)
     implementation(libs.compose)
     ksp(libs.androidx.room.compiler)
-    kapt(libs.hilt.kapt)
 }
