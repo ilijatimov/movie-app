@@ -3,27 +3,28 @@ package my.app.moviesapp
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.ext.junit.runners.AndroidJUnit4
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import my.app.moviesapp.data.db.MoviesDao
 import my.app.moviesapp.data.db.MoviesDatabase
 import my.app.moviesapp.data.model.movie_details.MovieDetails
-import org.junit.After
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
-import org.junit.Before
-import org.junit.Test
-import org.junit.runner.RunWith
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 
-@RunWith(AndroidJUnit4::class)
+
 class MoviesDaoTest {
 
     private lateinit var database: MoviesDatabase
     private lateinit var moviesDao: MoviesDao
 
-    @Before
+    @BeforeEach
     fun setUp() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         database = Room.inMemoryDatabaseBuilder(context, MoviesDatabase::class.java)
@@ -31,8 +32,10 @@ class MoviesDaoTest {
         moviesDao = database.getMoviesDao()
     }
 
-    @After
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @AfterEach
     fun tearDown() {
+        Dispatchers.resetMain()
         database.close()
     }
 

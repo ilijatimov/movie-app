@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.dagger.hilt.android)
     kotlin(libs.plugins.serialization.get().pluginId).version(libs.versions.kotlin).apply(false)
     id("kotlin-parcelize")
+    alias(libs.plugins.de.mannodermaus)
     alias(libs.plugins.com.google.devtools.ksp)
 }
 
@@ -70,6 +71,7 @@ dependencies {
     androidTestImplementation(libs.coroutinesTest)
     testImplementation(libs.paging)
     testImplementation(libs.junit.jupiter.api)
+    androidTestImplementation(libs.junit.jupiter.api)
     testImplementation(libs.junit.jupiter.engine)
     testRuntimeOnly(libs.junit.platform.launcher)
     testRuntimeOnly(libs.byte.buddy)

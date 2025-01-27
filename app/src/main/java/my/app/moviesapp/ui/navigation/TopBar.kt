@@ -38,8 +38,6 @@ fun TopBar(
 
     TopAppBarPreview(currentRoute, query, doSearching = { query ->
         searchMoviesViewModel.doSearching(query)
-    }, updateQuery = { query ->
-        searchMoviesViewModel.doSearching(query)
     }, navigateUp = {
         navController.navigateUp()
     })
@@ -52,7 +50,6 @@ fun TopAppBarPreview(
     currentScreen: Screens? = null,
     query: String = "",
     doSearching: (String) -> Unit = {},
-    updateQuery: (String) -> Unit = {},
     navigateUp: () -> Unit = {}
 ) {
     TopAppBar(
@@ -68,7 +65,7 @@ fun TopAppBarPreview(
                             SearchBarDefaults.InputField(
                                 placeholder = { Text(Strings.Search) },
                                 query = query,
-                                onQueryChange = { query -> updateQuery(query) },
+                                onQueryChange = { query -> doSearching(query) },
                                 onSearch = { query -> doSearching(query) },
                                 onExpandedChange = {},
                                 expanded = false

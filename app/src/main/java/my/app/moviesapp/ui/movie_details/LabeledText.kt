@@ -18,7 +18,7 @@ fun LabeledText(
     label: String,
     text: String?,
     onLinkClick: () -> Unit = {},
-    backgroundColor: Color = Color.Gray
+    backgroundColor: Color = Color.Gray.copy(alpha = 0.6f)
 ) {
     Column(
         modifier = Modifier.background(backgroundColor).padding(Dimens.dimen8)
@@ -30,7 +30,7 @@ fun LabeledText(
             color = MaterialTheme.colorScheme.primary
         )
         Text(
-            text = text ?: Strings.NotAvailable,
+            text = if(text.isNullOrEmpty()) Strings.NotAvailable else text,
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier.clickable { onLinkClick() }

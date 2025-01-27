@@ -7,6 +7,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
@@ -17,6 +19,7 @@ import my.app.moviesapp.ui.navigation.NavigationGraph
 import my.app.moviesapp.ui.navigation.TopBar
 import my.app.moviesapp.ui.navigation.getCurrentScreen
 import my.app.moviesapp.ui.search.SearchMoviesViewModel
+import my.app.moviesapp.util.Const
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -30,8 +33,11 @@ class MainActivity : ComponentActivity() {
                 //this viewmodel is passed down to TopBar and the screen for searching movies
                 val searchMoviesViewModel: SearchMoviesViewModel = hiltViewModel()
 
-                // set current screen that is observed in TopBar and BottomBar, in order
-                // to set the title and set the selected navigation item
+
+                val currentRoute by mainActivityViewModel.currentRoute.collectAsState()
+
+                // set current screen that is observed in TopBar, BottomBar and MainActivity, in order
+                // to set the title ,set the selected navigation item, and to show the bottombar
                 navController.addOnDestinationChangedListener { _, destination, _ ->
                     val currentScreen = getCurrentScreen(destination.route)
                     mainActivityViewModel.setCurrentScreen(currentScreen)
@@ -41,7 +47,9 @@ class MainActivity : ComponentActivity() {
                     topBar = {
                         TopBar(navController)
                     }, bottomBar = {
-                        BottomBar(navController)
+                        if(Const.bottomBarScreens.contains(currentRoute)){
+                            BottomBar(navController)
+                        }
                     }) { innerPadding ->
                     NavigationGraph(
                         modifier = Modifier.padding(innerPadding),

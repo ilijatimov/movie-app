@@ -1,11 +1,7 @@
 package my.app.moviesapp.ui.movie_details
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.navigationBars
-import androidx.compose.foundation.layout.only
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -19,6 +15,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import my.app.moviesapp.ui.util.SharedViewModel
 import my.app.moviesapp.ui.util.Strings
 import my.app.moviesapp.ui.util.composables.ProgressIndicator
+import my.app.moviesapp.ui.util.composables.contentWindowInsets
 import my.app.moviesapp.ui.util.showSnackBar
 import my.app.moviesapp.util.Resource
 
@@ -40,7 +37,7 @@ fun MovieDetailsScreen(
     }
 
     Scaffold(
-        contentWindowInsets = WindowInsets.navigationBars.only(WindowInsetsSides.Horizontal),
+        contentWindowInsets = contentWindowInsets(),
         snackbarHost = {
             SnackbarHost(hostState = snackBarHostState)
         },

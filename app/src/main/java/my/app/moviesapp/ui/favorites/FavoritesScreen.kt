@@ -1,9 +1,5 @@
 package my.app.moviesapp.ui.favorites
 
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.WindowInsetsSides
-import androidx.compose.foundation.layout.navigationBars
-import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Scaffold
@@ -23,6 +19,7 @@ import my.app.moviesapp.data.model.movie_details.MovieDetails
 import my.app.moviesapp.ui.util.Strings
 import my.app.moviesapp.ui.util.composables.EmptyList
 import my.app.moviesapp.ui.util.composables.MovieItem
+import my.app.moviesapp.ui.util.composables.contentWindowInsets
 import my.app.moviesapp.ui.util.showSnackBar
 
 @Composable
@@ -39,7 +36,7 @@ fun FavoritesScreen(
     val favouriteMovies by favoritesViewModel.favouriteMovies.collectAsState()
 
     Scaffold(
-        contentWindowInsets = WindowInsets.navigationBars.only(WindowInsetsSides.Horizontal),
+        contentWindowInsets = contentWindowInsets(),
         snackbarHost = {
             SnackbarHost(hostState = snackBarHostState)
         }
