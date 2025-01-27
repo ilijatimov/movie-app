@@ -20,7 +20,7 @@ class SearchMoviesViewModel @Inject constructor(
     val query = MutableStateFlow("")
 
     //transform flow
-    @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
+    @OptIn(ExperimentalCoroutinesApi::class)
     val movies = query.flatMapLatest { query ->
         repository.searchMoviesList(query).cachedIn(viewModelScope)
     }
