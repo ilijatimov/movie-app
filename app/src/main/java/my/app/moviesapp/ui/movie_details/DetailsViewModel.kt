@@ -52,7 +52,7 @@ class DetailsViewModel @Inject constructor(private val repository: MovieDetailsR
                 repository.getMovieDetails(movieId).let {
                     if (it.isSuccessful) {
                         setSelectedMovie(it.body())
-                        Resource.success(it.body()!!)
+                        Resource.success(it.body())
                     } else {
                         Resource.error()
                     }

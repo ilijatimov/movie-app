@@ -33,11 +33,14 @@ fun TopBar(
     searchMoviesViewModel: SearchMoviesViewModel = hiltViewModel(),
     mainActivityViewModel: MainActivityViewModel = hiltViewModel()
 ) {
-    val query by searchMoviesViewModel.query.collectAsState()
+    val query by searchMoviesViewModel.currentQuery.collectAsState()
     val currentRoute by mainActivityViewModel.currentRoute.collectAsState()
 
     TopAppBarPreview(currentRoute, query, doSearching = { query ->
-        searchMoviesViewModel.doSearching(query)
+        println("KKKKKK ")
+        searchMoviesViewModel.doSearching()
+    }, updateQuery = { query ->
+        searchMoviesViewModel.updateQuery(query)
     }, navigateUp = {
         navController.navigateUp()
     })
@@ -50,6 +53,7 @@ fun TopAppBarPreview(
     currentScreen: Screens? = null,
     query: String = "",
     doSearching: (String) -> Unit = {},
+    updateQuery: (String) -> Unit = {},
     navigateUp: () -> Unit = {}
 ) {
     TopAppBar(
@@ -65,7 +69,7 @@ fun TopAppBarPreview(
                             SearchBarDefaults.InputField(
                                 placeholder = { Text(Strings.Search) },
                                 query = query,
-                                onQueryChange = { query -> doSearching(query) },
+                                onQueryChange = { query -> updateQuery(query) },
                                 onSearch = { query -> doSearching(query) },
                                 onExpandedChange = {},
                                 expanded = false
@@ -85,7 +89,11 @@ fun TopAppBarPreview(
             //show arrow if screen is not in bottom bar
             if (!Const.bottomBarScreens.contains(currentScreen)) {
                 IconButton(onClick = { navigateUp() }) {
-                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
+                    Icon(
+                        Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = null,
+                        tint = Color.White
+                    )
                 }
             }
         })
