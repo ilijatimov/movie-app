@@ -33,14 +33,13 @@ fun TopBar(
     searchMoviesViewModel: SearchMoviesViewModel = hiltViewModel(),
     mainActivityViewModel: MainActivityViewModel = hiltViewModel()
 ) {
-    val query by searchMoviesViewModel.currentQuery.collectAsState()
+    val query by searchMoviesViewModel.query.collectAsState()
     val currentRoute by mainActivityViewModel.currentRoute.collectAsState()
 
     TopAppBarPreview(currentRoute, query, doSearching = { query ->
-        println("KKKKKK ")
-        searchMoviesViewModel.doSearching()
+        searchMoviesViewModel.doSearching(query)
     }, updateQuery = { query ->
-        searchMoviesViewModel.updateQuery(query)
+        searchMoviesViewModel.doSearching(query)
     }, navigateUp = {
         navController.navigateUp()
     })
