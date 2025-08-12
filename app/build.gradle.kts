@@ -2,12 +2,10 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    id("kotlin-kapt")
     alias(libs.plugins.dagger.hilt.android)
-    kotlin(libs.plugins.serialization.get().pluginId).version(libs.versions.kotlin).apply(false)
+    alias(libs.plugins.com.google.devtools.ksp)
     id("kotlin-parcelize")
     alias(libs.plugins.de.mannodermaus)
-    alias(libs.plugins.com.google.devtools.ksp)
 }
 
 android {
@@ -78,13 +76,15 @@ dependencies {
 
 
     // Hilt testing dependencies
+    androidTestImplementation(libs.hiltTest)
+    ksp(libs.hiltCompiler)
     testImplementation(libs.hiltTest)
-    kaptTest(libs.hiltCompiler)
+    kspTest(libs.hiltCompiler)
 
     // Android test dependencies
     androidTestImplementation(libs.espressoCore)
     androidTestImplementation(libs.hiltNavFragment)
-    kaptAndroidTest(libs.hiltCompiler)
+    kspAndroidTest(libs.hiltCompiler)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
